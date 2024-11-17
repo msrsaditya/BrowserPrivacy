@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare privacy scores across different web browsers including Desktop, Private Mode, iOS, Android, and Nightly versions. Data sourced from privacytests.org">
     <title>Browser Privacy Comparison</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -14,15 +15,15 @@
         }
 
         body {
-            background-color: #111827;
-            color: #e5e7eb;
+            background-color: #0f172a;
+            color: #f8fafc;
             padding: 20px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: #1f2937;
+            background-color: #1e293b;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             padding: 24px;
@@ -30,7 +31,6 @@
 
         h1 {
             text-align: center;
-            color: #e5e7eb;
             margin-bottom: 24px;
             font-size: 32px;
             font-weight: 600;
@@ -38,7 +38,7 @@
 
         .source {
             text-align: center;
-            color: #9ca3af;
+            color: #cbd5e1;
             margin-bottom: 24px;
             font-size: 16px;
         }
@@ -52,71 +52,8 @@
             text-decoration: underline;
         }
 
-        .tabs {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .tab {
-            padding: 14px 28px;
-            background-color: #374151;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 17px;
-            font-weight: 500;
-            color: #e5e7eb;
-            transition: all 0.3s;
-        }
-
-        .tab:hover {
-            background-color: #4b5563;
-        }
-
-        .tab.active {
-            background-color: #3B82F6;
-            color: white;
-        }
-
-        .chart-container {
-            position: relative;
-            height: 400px;
-            width: 100%;
-            margin-bottom: 32px;
-        }
-
-        .insights {
-            padding: 24px;
-            background-color: #273548;
-            border-radius: 12px;
-            margin-top: 32px;
-        }
-
-        .insights h2 {
-            color: #e5e7eb;
-            margin-bottom: 16px;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .insights-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            color: #d1d5db;
-        }
-
-        .insight-item {
-            line-height: 1.8;
-            font-size: 18px;
-            padding: 8px 0;
-        }
-
         .best-overall {
-            background-color: #065f46;
+            background-color: #064e3b;
             border-radius: 8px;
             padding: 16px;
             margin-bottom: 24px;
@@ -134,32 +71,15 @@
             color: #6ee7b7;
             font-size: 16px;
         }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 16px;
-            }
-            
-            .tab {
-                padding: 12px 24px;
-                font-size: 16px;
-            }
-            
-            .chart-container {
-                height: 300px;
-            }
-
-            .insights-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
+    <link rel="preload" href="data:text/css;base64,LnRhYnN7ZGlzcGxheTpmbGV4O2dhcDoxMnB4O21hcmdpbi1ib3R0b206MjRweDtmbGV4LXdyYXA6d3JhcDtqdXN0aWZ5LWNvbnRlbnQ6Y2VudGVyfS50YWJ7cGFkZGluZzoxNHB4IDI4cHg7YmFja2dyb3VuZC1jb2xvcjojMzc0MTUxO2JvcmRlcjpub25lO2JvcmRlci1yYWRpdXM6OHB4O2N1cnNvcjpwb2ludGVyO2ZvbnQtc2l6ZToxN3B4O2ZvbnQtd2VpZ2h0OjUwMDtjb2xvcjojZjhmYWZjO3RyYW5zaXRpb246YWxsIDAuM3N9LnRhYjpob3ZlcntiYWNrZ3JvdW5kLWNvbG9yOiM0YjU1NjN9LnRhYi5hY3RpdmV7YmFja2dyb3VuZC1jb2xvcjojM0I4MkY2O2NvbG9yOndoaXRlfS5jaGFydC1jb250YWluZXJ7cG9zaXRpb246cmVsYXRpdmU7aGVpZ2h0OjQwMHB4O3dpZHRoOjEwMCU7bWFyZ2luLWJvdHRvbTozMnB4fS5pbnNpZ2h0c3twYWRkaW5nOjI0cHg7YmFja2dyb3VuZC1jb2xvcjojMjczNTQ4O2JvcmRlci1yYWRpdXM6MTJweDttYXJnaW4tdG9wOjMycHh9Lmluc2lnaHRzIGgye2NvbG9yOiNmOGZhZmM7bWFyZ2luLWJvdHRvbToxNnB4O2ZvbnQtc2l6ZToyNHB4O2ZvbnQtd2VpZ2h0OjYwMH0uaW5zaWdodHMtZ3JpZHtkaXNwbGF5OmZsZXg7ZmxleC1kaXJlY3Rpb246Y29sdW1uO2dhcDoxNnB4O2NvbG9yOiNmMWY1Zjl9Lmluc2lnaHQtaXRlbXtsaW5lLWhlaWdodDoxLjg7Zm9udC1zaXplOjE4cHg7cGFkZGluZzo4cHggMH1AbWVkaWEobWF4LXdpZHRoOjc2OHB4KXsuY29udGFpbmVye3BhZGRpbmc6MTZweH0udGFie3BhZGRpbmc6MTJweCAyNHB4O2ZvbnQtc2l6ZToxNnB4fS5jaGFydC1jb250YWluZXJ7aGVpZ2h0OjMwMHB4fS5pbnNpZ2h0cy1ncmlke2dyaWQtdGVtcGxhdGUtY29sdW1uczoxZnJ9fQ==" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" as="script">
 </head>
 
 <body>
     <div class="container">
         <h1>Browser Privacy Comparison</h1>
-        <div class="source">Data source: <a href="https://privacytests.org" target="_blank">privacytests.org</a></div>
+        <div class="source">Data source: <a href="https://privacytests.org" target="_blank" rel="noopener">privacytests.org</a></div>
         
         <div class="best-overall">
             <div class="best-overall-title">Best Overall Browser</div>
@@ -191,158 +111,7 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const data = {
-            desktop: {
-                labels: ['Mullvad', 'Librewolf', 'Brave', 'Tor', 'Firefox', 'Ungoogled', 'Opera', 'Safari', 'Edge', 'Vivaldi', 'Chrome'],
-                scores: [132, 130, 113, 111, 56, 54, 53, 50, 47, 45, 36]
-            },
-            private: {
-                labels: ['Brave', 'Mullvad', 'Librewolf', 'Tor', 'Firefox', 'Chrome', 'Vivaldi', 'Ungoogled', 'Opera', 'Edge'],
-                scores: [141, 132, 131, 111, 104, 84, 84, 81, 79, 77]
-            },
-            ios: {
-                labels: ['Brave', 'Focus', 'Duckduckgo', 'Yandex', 'Safari', 'Opera', 'Firefox', 'Chrome', 'Edge'],
-                scores: [69, 55, 46, 42, 31, 30, 28, 26, 26]
-            },
-            android: {
-                labels: ['Brave', 'Focus', 'Tor', 'Mull', 'Cromite', 'Duckduckgo', 'Opera', 'Chrome', 'Vivaldi', 'Edge', 'Samsung', 'Yandex', 'Firefox'],
-                scores: [85, 75, 74, 51, 44, 33, 30, 29, 29, 28, 27, 27, 26]
-            },
-            nightly: {
-                labels: ['Brave', 'Tor', 'Duckduckgo', 'Firefox', 'Vivaldi', 'Opera', 'Safari', 'Chrome', 'Edge'],
-                scores: [114, 111, 86, 76, 55, 53, 52, 36, 36]
-            },
-            nightlyPrivate: {
-                labels: ['Brave', 'Tor', 'Firefox', 'Chrome', 'Vivaldi', 'Opera', 'Edge'],
-                scores: [141, 111, 102, 84, 84, 79, 78]
-            }
-        };
-
-        function calculateBestOverall() {
-            const browserScores = {};
-            const browserCounts = {};
-
-            Object.values(data).forEach(category => {
-                category.labels.forEach((browser, index) => {
-                    if (!browserScores[browser]) {
-                        browserScores[browser] = 0;
-                        browserCounts[browser] = 0;
-                    }
-                    browserScores[browser] += category.scores[index];
-                    browserCounts[browser]++;
-                });
-            });
-
-            const averages = Object.entries(browserScores).map(([browser, totalScore]) => ({
-                browser,
-                averageScore: totalScore / browserCounts[browser],
-                appearances: browserCounts[browser]
-            }));
-
-            const qualified = averages
-                .filter(item => item.appearances >= 3)
-                .sort((a, b) => b.averageScore - a.averageScore);
-
-            const best = qualified[0];
-            document.getElementById('bestOverall').textContent = 
-                `${best.browser} (Average Score: ${best.averageScore.toFixed(1)} across ${best.appearances} categories)`;
-        }
-
-        let chart;
-        const ctx = document.getElementById('privacyChart').getContext('2d');
-
-        function createChart(category) {
-            const categoryData = data[category];
-            
-            if (chart) {
-                chart.destroy();
-            }
-
-            const maxScore = Math.max(...categoryData.scores);
-            const backgroundColor = categoryData.scores.map(score => 
-                score === maxScore ? '#10B981' : '#3B82F6'
-            );
-            const borderColor = categoryData.scores.map(score => 
-                score === maxScore ? '#059669' : '#2563EB'
-            );
-            Chart.defaults.color = '#e5e7eb';
-            Chart.defaults.borderColor = '#374151';
-            chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: categoryData.labels,
-                    datasets: [{
-                        label: 'Privacy Score',
-                        data: categoryData.scores,
-                        backgroundColor: backgroundColor,
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            titleFont: {
-                                size: 16
-                            },
-                            bodyFont: {
-                                size: 14
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Privacy Score',
-                                color: '#e5e7eb',
-                                font: {
-                                    size: 16
-                                }
-                            },
-                            ticks: {
-                                font: {
-                                    size: 14
-                                }
-                            },
-                            grid: {
-                                color: '#374151'
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                autoSkip: false,
-                                maxRotation: 45,
-                                minRotation: 45,
-                                font: {
-                                    size: 14
-                                }
-                            },
-                            grid: {
-                                display: false
-                            }
-                        }
-                    }
-                }
-            });
-        }
-        calculateBestOverall();
-        createChart('desktop');
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelector('.tab.active').classList.remove('active');
-                tab.classList.add('active');
-                createChart(tab.dataset.category);
-            });
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" defer></script>
+    <script defer>const data={desktop:{labels:["Mullvad","Librewolf","Brave","Tor","Firefox","Ungoogled","Opera","Safari","Edge","Vivaldi","Chrome"],scores:[132,130,113,111,56,54,53,50,47,45,36]},private:{labels:["Brave","Mullvad","Librewolf","Tor","Firefox","Chrome","Vivaldi","Ungoogled","Opera","Edge"],scores:[141,132,131,111,104,84,84,81,79,77]},ios:{labels:["Brave","Focus","Duckduckgo","Yandex","Safari","Opera","Firefox","Chrome","Edge"],scores:[69,55,46,42,31,30,28,26,26]},android:{labels:["Brave","Focus","Tor","Mull","Cromite","Duckduckgo","Opera","Chrome","Vivaldi","Edge","Samsung","Yandex","Firefox"],scores:[85,75,74,51,44,33,30,29,29,28,27,27,26]},nightly:{labels:["Brave","Tor","Duckduckgo","Firefox","Vivaldi","Opera","Safari","Chrome","Edge"],scores:[114,111,86,76,55,53,52,36,36]},nightlyPrivate:{labels:["Brave","Tor","Firefox","Chrome","Vivaldi","Opera","Edge"],scores:[141,111,102,84,84,79,78]}};function calculateBestOverall(){const e={},t={};Object.values(data).forEach(a=>{a.labels.forEach((n,r)=>{e[n]||(e[n]=0,t[n]=0),e[n]+=a.scores[r],t[n]++})});const a=Object.entries(e).map(([e,a])=>({browser:e,averageScore:a/t[e],appearances:t[e]})).filter(e=>e.appearances>=3).sort((e,t)=>t.averageScore-e.averageScore)[0];document.getElementById("bestOverall").textContent=`${a.browser} (Average Score: ${a.averageScore.toFixed(1)} across ${a.appearances} categories)`}let chart;const ctx=document.getElementById("privacyChart").getContext("2d");function createChart(e){const t=data[e];chart&&chart.destroy();const a=Math.max(...t.scores),n=t.scores.map(e=>e===a?"#10B981":"#3B82F6"),r=t.scores.map(e=>e===a?"#059669":"#2563EB");Chart.defaults.color="#f8fafc",Chart.defaults.borderColor="#374151",chart=new Chart(ctx,{type:"bar",data:{labels:t.labels,datasets:[{label:"Privacy Score",data:t.scores,backgroundColor:n,borderColor:r,borderWidth:1}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{display:!1},tooltip:{titleFont:{size:16},bodyFont:{size:14}}},scales:{y:{beginAtZero:!0,title:{display:!0,text:"Privacy Score",color:"#f8fafc",font:{size:16}},ticks:{font:{size:14}},grid:{color:"#374151"}},x:{ticks:{autoSkip:!1,maxRotation:45,minRotation:45,font:{size:14}},grid:{display:!1}}}}})}window.addEventListener("DOMContentLoaded",()=>{calculateBestOverall(),createChart("desktop"),document.querySelectorAll(".tab").forEach(e=>{e.addEventListener("click",()=>{document.querySelector(".tab.active").classList.remove("active"),e.classList.add("active"),createChart(e.dataset.category)})})});</script>
 </body>
 </html>
