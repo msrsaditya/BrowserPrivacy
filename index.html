@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browser Privacy Comparison</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.6/chart.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -155,6 +155,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Browser Privacy Comparison</h1>
@@ -219,12 +220,10 @@
             }
         };
 
-        // Calculate best overall browser
         function calculateBestOverall() {
             const browserScores = {};
             const browserCounts = {};
 
-            // Collect all scores for each browser
             Object.values(data).forEach(category => {
                 category.labels.forEach((browser, index) => {
                     if (!browserScores[browser]) {
@@ -236,14 +235,12 @@
                 });
             });
 
-            // Calculate averages
             const averages = Object.entries(browserScores).map(([browser, totalScore]) => ({
                 browser,
                 averageScore: totalScore / browserCounts[browser],
                 appearances: browserCounts[browser]
             }));
 
-            // Sort by average score and minimum 3 appearances
             const qualified = averages
                 .filter(item => item.appearances >= 3)
                 .sort((a, b) => b.averageScore - a.averageScore);
@@ -263,21 +260,15 @@
                 chart.destroy();
             }
 
-            // Find the highest score and its index
             const maxScore = Math.max(...categoryData.scores);
-            
-            // Create background colors array with special color for highest score
             const backgroundColor = categoryData.scores.map(score => 
                 score === maxScore ? '#10B981' : '#3B82F6'
             );
-
             const borderColor = categoryData.scores.map(score => 
                 score === maxScore ? '#059669' : '#2563EB'
             );
-
             Chart.defaults.color = '#e5e7eb';
             Chart.defaults.borderColor = '#374151';
-
             chart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -343,21 +334,12 @@
                 }
             });
         }
-
-        // Calculate best overall browser on page load
         calculateBestOverall();
-
-        // Initial chart
         createChart('desktop');
-
-        // Tab switching
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
-                // Update active tab
                 document.querySelector('.tab.active').classList.remove('active');
                 tab.classList.add('active');
-                
-                // Update chart
                 createChart(tab.dataset.category);
             });
         });
