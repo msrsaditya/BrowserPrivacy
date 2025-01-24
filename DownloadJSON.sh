@@ -1,8 +1,7 @@
 #!/bin/bash
 base_url="https://privacytests.org"
 files=("index" "private" "ios" "android" "nightly" "nightly-private")
+mkdir -p ~/JSON
 for file in "${files[@]}"; do
-    curl -O "$base_url/$file.json"
+    curl -s -o ~/JSON/"$file.json" "$base_url/$file.json"
 done
-mkdir -p /Users/shashank/JSON
-mv /Users/shashank/*.json /Users/shashank/JSON/
