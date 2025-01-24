@@ -1,1 +1,2 @@
-Better Browser Privacy Comparison Results (Source: privacytests.org)
+# Better Browser Privacy Comparison Results
+Source: privacytests.org
