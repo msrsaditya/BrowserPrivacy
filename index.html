@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
+    <meta name="description" content="Browser privacy comparison dashboard showing test results from PrivacyTests.org with detailed analysis and visualizations">
     <title>Browser Privacy Dashboard</title>
     <style>
         :root {
             --primary: #ffffff;
             --secondary: #f8f9fa;
-            --accent: #ef4444;
+            --accent: #dc2626;
             --background: #121212;
             --surface: #1e1e1e;
             --gradient-start: #3B82F6;
             --gradient-end: #6366f1;
-            --text-secondary: #a0a0a0;
+            --text-secondary: #8a8a8a;
         }
 
         body {
@@ -100,7 +101,7 @@
         }
 
         .github-button:hover {
-            background: #dc2626;
+            background: #b91c1c;
             transform: translateY(-2px);
         }
 
@@ -131,7 +132,7 @@
         .nav-button.active {
             background: var(--accent);
             color: white;
-            border-color: rgba(239,68,68,0.3);
+            border-color: rgba(220,38,38,0.3);
         }
 
         .category {
@@ -183,7 +184,7 @@
 
         .winner-bar {
             background: var(--accent);
-            box-shadow: 0 0 15px rgba(239,68,68,0.3);
+            box-shadow: 0 0 15px rgba(220,38,38,0.3);
         }
 
         .winner-tag {
@@ -191,12 +192,12 @@
             font-weight: 700;
             margin-top: 15px;
             padding: 10px 20px;
-            background: rgba(239,68,68,0.15);
+            background: rgba(220,38,38,0.15);
             border-radius: 8px;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid rgba(239,68,68,0.3);
+            border: 1px solid rgba(220,38,38,0.3);
         }
 
         .badge {
@@ -223,12 +224,12 @@
             color: var(--accent);
             margin: 25px 0;
             padding: 20px;
-            background: rgba(239,68,68,0.15);
+            background: rgba(220,38,38,0.15);
             border-radius: 12px;
             display: inline-flex;
             align-items: center;
             gap: 15px;
-            border: 1px solid rgba(239,68,68,0.3);
+            border: 1px solid rgba(220,38,38,0.3);
         }
 
         .win-count {
@@ -267,29 +268,6 @@
             transform: translateY(5px);
             z-index: 100;
             border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--background);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.5s ease;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 4px solid rgba(255,255,255,0.2);
-            border-top-color: var(--accent);
-            animation: spin 1s linear infinite;
         }
 
         .axis-label {
@@ -332,15 +310,9 @@
         #categories .category.active {
             display: block;
         }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
-    <div class="loading"><div class="spinner"></div></div>
-
     <div class="container">
         <div class="header">
             <div class="header-info">
@@ -554,7 +526,7 @@
                         .map(b => parseInt(b.dataset.score)));
                     bar.style.width = `${(score/maxScore)*100}%`;
                 });
-            }, 500);
+            }, 0);
 
             const tooltip = document.createElement('div');
             tooltip.className = 'tooltip';
@@ -572,13 +544,6 @@
                     tooltip.style.opacity = '0';
                 });
             });
-
-            setTimeout(() => {
-                document.querySelector('.loading').style.opacity = '0';
-                setTimeout(() => {
-                    document.querySelector('.loading').style.display = 'none';
-                }, 500);
-            }, 1000);
         }
 
         initDashboard();
