@@ -12,9 +12,9 @@
             --background: #0a0a0a;
             --surface: #1a1a1a;
             --accent: #ff4444;
-            --gradient-start: #2563eb;
-            --gradient-end: #4f46e5;
-            --text-secondary: #cccccc;
+            --gradient-start: #4285f4;
+            --gradient-end: #7c4dff;
+            --text-secondary: #e0e0e0;
         }
 
         body {
@@ -100,7 +100,7 @@
         }
 
         .github-button:hover {
-            background: #cc0000;
+            background: #ff0000;
             transform: translateY(-2px);
         }
 
@@ -113,8 +113,8 @@
         }
 
         .nav-button {
-            background: var(--surface);
-            color: var(--text-secondary);
+            background: #333333;
+            color: var(--primary);
             border: 1px solid rgba(255,255,255,0.1);
             padding: 10px 20px;
             border-radius: 20px;
@@ -124,14 +124,13 @@
         }
 
         .nav-button:hover {
-            background: rgba(255,255,255,0.1);
-            color: var(--primary);
+            background: #404040;
         }
 
         .nav-button.active {
             background: var(--accent);
-            color: white;
-            border-color: rgba(255,68,68,0.3);
+            color: var(--primary);
+            border-color: var(--accent);
         }
 
         .category {
@@ -156,7 +155,7 @@
         .bar-container {
             margin: 15px 0;
             height: 40px;
-            background: rgba(255,255,255,0.05);
+            background: #000000;
             border-radius: 20px;
             overflow: hidden;
             position: relative;
@@ -182,16 +181,16 @@
         }
 
         .winner-tag {
-            color: var(--accent);
+            color: var(--primary);
             font-weight: 700;
             margin-top: 15px;
             padding: 10px 20px;
-            background: rgba(255,68,68,0.15);
+            background: rgba(255,255,255,0.15);
             border-radius: 8px;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid rgba(255,68,68,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .badge {
@@ -215,7 +214,7 @@
 
         .overall-winner {
             font-size: 1.6em;
-            color: var(--accent);
+            color: var(--primary);
             margin: 25px 0;
             padding: 20px;
             background: rgba(255,68,68,0.15);
@@ -269,7 +268,7 @@
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-secondary);
+            color: var(--primary);
             font-size: 0.9em;
         }
 
@@ -282,13 +281,14 @@
         }
 
         .important-note h1 {
-            color: var(--accent);
+            color: #00a8ff;
             font-size: 1.8em;
             margin-bottom: 25px;
         }
 
         .important-note p {
             margin-bottom: 20px;
+            color: var(--primary);
         }
 
         .highlight {
@@ -303,6 +303,12 @@
 
         #categories .category.active {
             display: block;
+        }
+
+        .nav-button:focus,
+        .github-button:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
         }
     </style>
 </head>
