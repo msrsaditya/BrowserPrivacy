@@ -263,15 +263,6 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .axis-label {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary);
-            font-size: 0.9em;
-        }
-
         .important-note {
             background: var(--surface);
             padding: 30px;
@@ -387,7 +378,7 @@
         const categories = [
             {
                 name: "🖥️ Desktop",
-                winner: "🦫 Mullvad 🌟",
+                winner: "🦫 Mullvad ",
                 items: [
                     { browser: "Mullvad", score: 137 },
                     { browser: "Librewolf", score: 130 },
@@ -402,7 +393,7 @@
             },
             {
                 name: "🔒 Desktop Private",
-                winner: "🦁 Brave 🌟",
+                winner: "🦁 Brave ",
                 items: [
                     { browser: "Brave", score: 141 },
                     { browser: "Mullvad", score: 137 },
@@ -416,7 +407,7 @@
             },
             {
                 name: "📱 iOS",
-                winner: "🦁 Brave 🌟",
+                winner: "🦁 Brave ",
                 items: [
                     { browser: "Brave", score: 70 },
                     { browser: "Focus", score: 55 },
@@ -432,7 +423,7 @@
             },
             {
                 name: "🤖 Android",
-                winner: "🦁 Brave 🌟",
+                winner: "🦁 Brave ",
                 items: [
                     { browser: "Brave", score: 82 },
                     { browser: "Focus", score: 75 },
@@ -450,7 +441,7 @@
             },
             {
                 name: "🌙 Nightly",
-                winner: "🦁 Brave 🌟",
+                winner: "🦁 Brave ",
                 items: [
                     { browser: "Brave", score: 120 },
                     { browser: "Tor", score: 111 },
@@ -465,7 +456,7 @@
             },
             {
                 name: "🌝 Nightly Private",
-                winner: "🦁 Brave 🌟",
+                winner: "🦁 Brave ",
                 items: [
                     { browser: "Brave", score: 141 },
                     { browser: "Tor", score: 111 },
@@ -480,7 +471,6 @@
         ];
 
         function createChart(categoryData, index) {
-            const maxScore = Math.max(...categoryData.items.map(item => item.score));
             const winnerName = categoryData.winner.split(' ')[1];
             
             return `
@@ -495,7 +485,6 @@
                                      data-browser="${item.browser}">
                                     ${item.browser} (${item.score})
                                 </div>
-                                <div class="axis-label">Max: ${maxScore}</div>
                             </div>
                         `).join('')}
                     </div>
