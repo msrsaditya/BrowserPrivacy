@@ -9,13 +9,12 @@
     <style>
         :root {
             --primary: #ffffff;
-            --secondary: #f8f9fa;
-            --accent: #b91c1c;
-            --background: #121212;
-            --surface: #1e1e1e;
+            --background: #0a0a0a;
+            --surface: #1a1a1a;
+            --accent: #ff4444;
             --gradient-start: #2563eb;
             --gradient-end: #4f46e5;
-            --text-secondary: #a0a0a0;
+            --text-secondary: #cccccc;
         }
 
         body {
@@ -101,7 +100,7 @@
         }
 
         .github-button:hover {
-            background: #991b1b;
+            background: #cc0000;
             transform: translateY(-2px);
         }
 
@@ -132,7 +131,7 @@
         .nav-button.active {
             background: var(--accent);
             color: white;
-            border-color: rgba(185,28,28,0.3);
+            border-color: rgba(255,68,68,0.3);
         }
 
         .category {
@@ -161,11 +160,6 @@
             border-radius: 20px;
             overflow: hidden;
             position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        .bar-container:hover {
-            transform: scale(1.02);
         }
 
         .bar {
@@ -184,7 +178,7 @@
 
         .winner-bar {
             background: var(--accent);
-            box-shadow: 0 0 15px rgba(185,28,28,0.3);
+            box-shadow: 0 0 15px rgba(255,68,68,0.3);
         }
 
         .winner-tag {
@@ -192,12 +186,12 @@
             font-weight: 700;
             margin-top: 15px;
             padding: 10px 20px;
-            background: rgba(185,28,28,0.15);
+            background: rgba(255,68,68,0.15);
             border-radius: 8px;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid rgba(185,28,28,0.3);
+            border: 1px solid rgba(255,68,68,0.3);
         }
 
         .badge {
@@ -224,12 +218,12 @@
             color: var(--accent);
             margin: 25px 0;
             padding: 20px;
-            background: rgba(185,28,28,0.15);
+            background: rgba(255,68,68,0.15);
             border-radius: 12px;
             display: inline-flex;
             align-items: center;
             gap: 15px;
-            border: 1px solid rgba(185,28,28,0.3);
+            border: 1px solid rgba(255,68,68,0.3);
         }
 
         .win-count {
@@ -317,7 +311,7 @@
         <div class="header">
             <div class="header-info">
                 <div class="source-info">
-                    <div>Source: <a href="https://privacytests.org" target="_blank">privacytests.org</a></div>
+                    <div>Source: <a href="https://privacytests.org" target="_blank" rel="noopener noreferrer">privacytests.org</a></div>
                     <div>Last Updated: 24-01-25</div>
                     <div>Data not to be taken at face value (read note below)</div>
                 </div>
@@ -325,9 +319,9 @@
                     👨‍💻 See My Code
                 </div>
             </div>
-            <h1>🛡️  Browser Privacy Dashboard</h1>
+            <h1>🛡️ Browser Privacy Dashboard</h1>
             <div class="overall-winner">
-                🏆  Overall Winner: Brave
+                🏆 Overall Winner: Brave
                 <div class="tooltip">5 category wins</div>
             </div>
         </div>
@@ -344,41 +338,30 @@
         <div id="categories"></div>
 
         <div class="category">
-            <h2>📊  Win Count Breakdown</h2>
+            <h2>📊 Win Count Breakdown</h2>
             <div class="win-count">
-                <div class="badge">🦁  Brave: 5 wins</div>
-                <div class="badge">🦫  Mullvad: 1 win</div>
+                <div class="badge">🦁 Brave: 5 wins</div>
+                <div class="badge">🦫 Mullvad: 1 win</div>
             </div>
         </div>
 
         <div class="important-note">
             <h1>Important Note</h1>
             <p>
-                This data does not serve as a definitive benchmark for privacy. It simply aggregates the results of tests 
-                conducted on the <strong>privacytests.org</strong> website across various categories and browsers.
+                This data does not serve as a definitive benchmark for privacy. It aggregates test results from 
+                <strong>privacytests.org</strong> across various browsers and categories.
             </p>
             <p>
-                The main idea is that the browser that passes the most tests across the largest number of categories 
-                generally performs better overall. This is typically true for the top 1% of privacy-focused browsers but may 
-                not hold for average mainstream browsers. For example, <span class="highlight">Opera shows a higher privacy score 
-                than Safari</span> in the Desktop category. However, in reality, Opera does not offer better privacy than Safari.
+                While higher scores generally indicate better privacy protection, this primarily applies to privacy-focused browsers. 
+                Mainstream browsers may show different real-world behavior despite their scores.
             </p>
             <p>
-                chuchu has connections to the chuchu government and is known for extensive data collection. Its higher score 
-                is largely due to its ability to block more trackers and ads than Safari. Many categories on privacytests.org 
-                focus on ad-blocking, which contributes to Opera's elevated score.
+                <span class="highlight">Example:</span> Opera's higher score than Safari in Desktop results from better ad-blocking, 
+                not necessarily superior overall privacy. Some browsers like Tor focus on anonymity rather than tracker blocking.
             </p>
             <p>
-                A potential solution would be to assign weights to each category, but this introduces bias based on individual 
-                priorities—what one considers important, such as ad-blocking, may not matter to everyone. Additionally, it can 
-                be inferred that <strong>Tor</strong> is less private than Brave or Mullvad, which is also not accurate. This misconception 
-                arises because Tor does not block trackers; instead, it spoofs and anonymizes them. We cannot ever test whether Tor blocks them or not because it is unfalsifiable.
-            </p>
-            <p>
-                Therefore, do not consider these results as a definitive comparison of privacy among browsers. The tests are 
-                designed to identify which browser achieves the highest score across the most categories. We are looking for 
-                a browser that is a <span class="highlight">jack-of-all-trades regarding privacy</span>, rather than a master 
-                of a single aspect, such as the anonymity provided by Tor or VPN support offered by Mullvad.
+                Consider these results as indicators of <em>comprehensive privacy features</em> rather than absolute measures. 
+                Different browsers excel in different aspects of privacy protection.
             </p>
         </div>
     </div>
@@ -386,8 +369,8 @@
     <script>
         const categories = [
             {
-                name: "🖥️  Desktop",
-                winner: "🦫  Mullvad 🌟",
+                name: "🖥️ Desktop",
+                winner: "🦫 Mullvad 🌟",
                 items: [
                     { browser: "Mullvad", score: 137 },
                     { browser: "Librewolf", score: 130 },
@@ -401,8 +384,8 @@
                 ]
             },
             {
-                name: "🔒  Desktop Private",
-                winner: "🦁  Brave 🌟",
+                name: "🔒 Desktop Private",
+                winner: "🦁 Brave 🌟",
                 items: [
                     { browser: "Brave", score: 141 },
                     { browser: "Mullvad", score: 137 },
@@ -415,12 +398,12 @@
                 ]
             },
             {
-                name: "📱  iOS",
-                winner: "🦁  Brave 🌟",
+                name: "📱 iOS",
+                winner: "🦁 Brave 🌟",
                 items: [
                     { browser: "Brave", score: 70 },
                     { browser: "Focus", score: 55 },
-                    { browser: "Duckduckgo", score: 48 },
+                    { browser: "DuckDuckGo", score: 48 },
                     { browser: "Yandex", score: 43 },
                     { browser: "Firefox", score: 32 },
                     { browser: "Safari", score: 32 },
@@ -431,14 +414,14 @@
                 ]
             },
             {
-                name: "🤖  Android",
-                winner: "🦁  Brave 🌟",
+                name: "🤖 Android",
+                winner: "🦁 Brave 🌟",
                 items: [
                     { browser: "Brave", score: 82 },
                     { browser: "Focus", score: 75 },
                     { browser: "Tor", score: 74 },
                     { browser: "Cromite", score: 44 },
-                    { browser: "Duckduckgo", score: 33 },
+                    { browser: "DuckDuckGo", score: 33 },
                     { browser: "Opera", score: 30 },
                     { browser: "Samsung", score: 30 },
                     { browser: "Edge", score: 29 },
@@ -449,13 +432,13 @@
                 ]
             },
             {
-                name: "🌙  Nightly",
-                winner: "🦁  Brave 🌟",
+                name: "🌙 Nightly",
+                winner: "🦁 Brave 🌟",
                 items: [
                     { browser: "Brave", score: 120 },
                     { browser: "Tor", score: 111 },
                     { browser: "Safari", score: 80 },
-                    { browser: "Duckduckgo", score: 78 },
+                    { browser: "DuckDuckGo", score: 78 },
                     { browser: "Firefox", score: 59 },
                     { browser: "Opera", score: 47 },
                     { browser: "Vivaldi", score: 47 },
@@ -464,8 +447,8 @@
                 ]
             },
             {
-                name: "🌝  Nightly Private",
-                winner: "🦁  Brave 🌟",
+                name: "🌝 Nightly Private",
+                winner: "🦁 Brave 🌟",
                 items: [
                     { browser: "Brave", score: 141 },
                     { browser: "Tor", score: 111 },
@@ -481,7 +464,7 @@
 
         function createChart(categoryData, index) {
             const maxScore = Math.max(...categoryData.items.map(item => item.score));
-            const winnerName = categoryData.winner.split('  ')[0].trim();
+            const winnerName = categoryData.winner.split(' ')[1];
             
             return `
                 <div class="category ${index === 0 ? 'active' : ''}" data-category-index="${index}">
@@ -490,7 +473,7 @@
                         ${categoryData.items.map((item, i) => `
                             <div class="bar-container">
                                 <div class="bar ${item.browser === winnerName ? 'winner-bar' : ''}" 
-                                     style="width: 0; transition-delay: ${i * 50}ms"
+                                     style="width: 0"
                                      data-score="${item.score}"
                                      data-browser="${item.browser}">
                                     ${item.browser} (${item.score})
@@ -507,26 +490,21 @@
         function initDashboard() {
             const container = document.getElementById('categories');
             container.innerHTML = categories.map((category, index) => createChart(category, index)).join('');
-            
+
             document.querySelectorAll('.nav-button').forEach(button => {
                 button.addEventListener('click', function() {
-                    document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
-                    document.querySelectorAll('#categories .category').forEach(cat => cat.classList.remove('active'));
+                    const categoryIndex = parseInt(this.dataset.categoryIndex);
                     
-                    const index = this.dataset.categoryIndex;
+                    document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('.category').forEach(cat => cat.classList.remove('active'));
+                    
                     this.classList.add('active');
-                    document.querySelector(`#categories .category[data-category-index="${index}"]`).classList.add('active');
+                    const activeCategory = document.querySelector(`.category[data-category-index="${categoryIndex}"]`);
+                    activeCategory.classList.add('active');
+                    
+                    animateBars(activeCategory);
                 });
             });
-
-            setTimeout(() => {
-                document.querySelectorAll('.bar').forEach(bar => {
-                    const score = parseInt(bar.dataset.score);
-                    const maxScore = Math.max(...[...bar.parentNode.parentNode.querySelectorAll('.bar')]
-                        .map(b => parseInt(b.dataset.score)));
-                    bar.style.width = `${(score/maxScore)*100}%`;
-                });
-            }, 0);
 
             const tooltip = document.createElement('div');
             tooltip.className = 'tooltip';
@@ -543,6 +521,17 @@
                 bar.addEventListener('mouseleave', () => {
                     tooltip.style.opacity = '0';
                 });
+            });
+
+            animateBars(document.querySelector('.category.active'));
+        }
+
+        function animateBars(container) {
+            container.querySelectorAll('.bar').forEach(bar => {
+                const score = parseInt(bar.dataset.score);
+                const maxScore = Math.max(...[...bar.parentNode.parentNode.querySelectorAll('.bar')]
+                    .map(b => parseInt(b.dataset.score)));
+                bar.style.width = `${(score/maxScore)*100}%`;
             });
         }
 
